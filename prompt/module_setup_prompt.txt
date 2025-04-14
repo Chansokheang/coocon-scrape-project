@@ -1,0 +1,7 @@
+Update place holder in module_template.js and Save as a new file using __WEBSITE_NAME__ as a file name.
+__VERSION__=0.0.1
+__WEBSITE_NAME__= kbstar
+__CLASS_NAME__= 빠른조회
+__HOST_URL__= https://obank.kbstar.com
+__JOB_NAME__= 빠른잔액조회
+

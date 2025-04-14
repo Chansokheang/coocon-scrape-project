@@ -1,0 +1,777 @@
+<!-- b028770 START -->
+<div id="b028770">
+    <div id="errorDiv" style="position:relative;z-index:1;display:none;">
+        <div id="errorDivIn" class="notiArea error">
+            <strong>고객님 죄송합니다.</strong>
+            <p id="errMsg" class="comment"></p>
+            <input type="hidden" name="errorCode" id="errorCode" value=""/>
+            <input type="hidden" name="pageNm" id="pageNm" value="[팝업]빠른조회"/>
+            <input type="hidden" name="pageCd" id="pageCd" value="C025255"/>
+            <p id="linkText" class="comment"></p>
+            <p id="errorTransfer" style="display:none;">
+                <strong id="goPage"></strong>
+                화면으로 이동합니다.
+            </p>
+            <ul class="list_type1" id="errUl">
+                <li>
+                    응답코드 <span class="point_blue" id="errCd">()</span>
+                </li>
+            </ul>
+            <div class="notiCall">
+                <span class="btn small errClose" id="errorClose" style="display:block;">
+                    <a href="javascript:window.close();">닫기</a>
+                </span>
+                대표전화 &nbsp;&nbsp;&nbsp;<em>1588-9999</em>
+                <span>|</span>
+                <em>1599-9999</em>
+                <span>|</span>
+                <em>1644-9999</em>
+            </div>
+        </div>
+        <div class="btnArea" id="errorTransferBtn" style="display:none;">
+            <span class="btn large action">
+                <a href="">확인</a>
+            </span>
+        </div>
+        <script type="text/javascript">
+            //<![CDATA[  $(function(){    if($.browser.msie){      var tempObj    = $("#errorTransferBtn").find("a");      var strTempUrl = tempObj.attr("href");      tempObj.attr("href", caq.util.getEncodeURI(strTempUrl));    }  });  //]]>
+        </script>
+    </div>
+    <form method="post" id="IBF" name="IBF" action="">
+        <input type="hidden" name="lastReqTime" value='165419'/>
+        <input type="hidden" name="signed_msg"/>
+        <input type="hidden" name="요청키" value=""/>
+        <input type="hidden" name="계좌번호" value='10270104496173'/>
+        <input type="hidden" name="조회시작일자"/>
+        <input type="hidden" name="조회종료일"/>
+        <input type="hidden" name="주민사업자번호"/>
+        <input type="hidden" name="고객식별번호"/>
+        <input type="hidden" name="빠른조회" value="Y"/>
+        <input type='hidden' name="s_pageKeyValue"/>
+        <input type='hidden' name="s_presentNum"/>
+        <input type="hidden" name="다음거래년월일키" value=''/>
+        <input type="hidden" name="다음거래일련번호키" value=''/>
+        <input type="hidden" name="이전다음거래년월일키" value=''/>
+        <input type="hidden" name="이전다음거래일련번호키" value=''/>
+        <div id="pop_wrapper">
+            <div id="pop_head">
+                <h1 class="tit_dep1">빠른조회</h1>
+            </div>
+            <div id="pop_contents">
+                <ul class="tabMenu dep2">
+                    <li class="on">
+                        <a href="#" onclick="return _goView(0);">빠른조회</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="return _goView(1);">자기앞/어음·수표 사고신고조회</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="return _goView(2);">제증명발급조회</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="return _goView(4);">ID조회</a>
+                    </li>
+                </ul>
+                <ul class="list_type1">
+                    <li>
+                        사전에 영업점이나 인터넷뱅킹으로 등록하신 계좌에 대해서만 조회 가능합니다.&nbsp;&nbsp;<a href="#" class="link_direct" onclick='goURL("/quics?page=C018920");'>빠른조회 등록하기</a>
+                    </li>
+                </ul>
+                <table class="tType02 s5" summary="계좌정보,총잔액,출금가능잔액,대출약정금액,대출만료일,자기앞수표금액,가계수표금액,기타타점권금액 정보를 알수있는 표입니다.">
+                    <caption>계좌간략정보</caption>
+                    <colgroup>
+                        <col width="19%"/>
+                        <col width="*"/>
+                        <col width="19%"/>
+                        <col width="30%"/>
+                    </colgroup>
+                    <tbody>
+                        <tr class="first">
+                            <th scope="row">계좌정보</th>
+                            <td colspan="3">102701-04-496173(ＫＢ　ＷＥＬＣＯＭＥ　통장)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">총잔액</th>
+                            <td>49,821
+										</td>
+                            <th scope="row">출금가능잔액</th>
+                            <td>49,821
+										</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                대출약정금액<br/>대출만료일
+                            </th>
+                            <td>
+                                0<br/>
+                            </td>
+                            <th scope="row">
+                                자기앞수표금액<br/>
+                                가계수표금액<br/>기타타점권금액
+                            </th>
+                            <td>
+                                0<br/>
+                                0<br/>0
+										
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="inq_btn_area s7">
+                    <p>조회기간 :
+									2025.04.14
+									~
+									2025.04.14
+								</p>
+                </div>
+                <table class="tType01" summary="계좌의 거래일시,적요,통장에표시내용,출금금액,입금금액,잔액,거래점 정보를 알수있는 목록입니다.">
+                    <caption>계좌거래내역정보목록</caption>
+                    <colgroup>
+                        <col width="11%"/>
+                        <col width="15%"/>
+                        <col width="17%"/>
+                        <col width="12%"/>
+                        <col width="12%"/>
+                        <col width="*"/>
+                        <col width="9%"/>
+                        <col width="10%"/>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th rowspan="2" scope="col">거래일시</th>
+                            <th rowspan="2" scope="col">적요</th>
+                            <th scope="col">내통장표시내용</th>
+                            <th rowspan="2" scope="col">출금금액</th>
+                            <th rowspan="2" scope="col">입금금액</th>
+                            <th rowspan="2" scope="col">잔액</th>
+                            <th rowspan="2" scope="col">거래점</th>
+                            <th rowspan="2" scope="col" class="nbr">구분</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">의뢰인/수취인</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">
+                                2025.04.14<br/>14:31:22
+														
+                            </td>
+                            <td rowspan="2">FBS 출금
+														</td>
+                            <td class="tLeft">&nbsp;</td>
+                            <td rowspan="2" class="tRight">16,620
+														</td>
+                            <td rowspan="2" class="tRight">0
+														</td>
+                            <td rowspan="2" class="tRight">49,821
+														</td>
+                            <td rowspan="2">임베디
+														</td>
+                            <td rowspan="2" class="nbr"></td>
+                        </tr>
+                        <tr>
+                            <td>쿠팡 &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">
+                                2025.04.14<br/>08:08:01
+														
+                            </td>
+                            <td rowspan="2">오픈뱅킹출금
+														</td>
+                            <td class="tLeft">&nbsp;</td>
+                            <td rowspan="2" class="tRight">10,000
+														</td>
+                            <td rowspan="2" class="tRight">0
+														</td>
+                            <td rowspan="2" class="tRight">66,441
+														</td>
+                            <td rowspan="2">스타뱅
+														</td>
+                            <td rowspan="2" class="nbr"></td>
+                        </tr>
+                        <tr>
+                            <td>비플머니 충전 &nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="optionBtnArea mt0">
+                    <div class="leftArea"></div>
+                    <div class="rightArea">
+                        <span class="btn small icon">
+                            <span class="left excel">
+                                <em class="hidden">엑셀</em>
+                                <a href="#" onclick="javascript:linkExcel(); return false;">저장</a>
+                            </span>
+                        </span>
+                        <span class="btn small icon">
+                            <span class="right blank">
+                                <button type="button" title="인쇄 새창" onclick="linkPrint();return false;">인쇄</button>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <table class="tType02 s7" summary="조회조건을 설정하여, 계좌거래내역을 조회">
+                    <caption>계좌조회설정</caption>
+                    <colgroup>
+                        <col width="19%"/>
+                        <col width="*"/>
+                    </colgroup>
+                    <tbody>
+                        <tr class="first">
+                            <th scope="row">
+                                <label>조회조건</label>
+                            </th>
+                            <td>
+                                <div class="inq_period" id="divPRO1" style="display: block">
+                                    <span class="btn small">
+                                        <input type="button" value="당일" onclick="CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 7); return false;"/>
+                                    </span>
+                                    <span class="btn small">
+                                        <input type="button" value="3일" onclick="CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 0); return false;"/>
+                                    </span>
+                                    <span class="btn small">
+                                        <input type="button" value="1주일" onclick="CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 1); return false;"/>
+                                    </span>
+                                    <span class="btn small">
+                                        <input type="button" value="1개월" onclick="CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 2); return false;"/>
+                                    </span>
+                                    <span class="btn small">
+                                        <input type="button" value="3개월" onclick="CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 3); return false;"/>
+                                    </span>
+                                    <span class="btn small">
+                                        <input type="button" value="6개월" onclick="CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 8); return false;"/>
+                                    </span>
+                                </div>
+                                <div class="inq_period" id="divPRO2" style="display: none">
+                                    <span class="btn small">
+                                        <input type="button" value="당일" onclick="javascript:CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 7); return false;"/>
+                                    </span>
+                                    <span class="btn small">
+                                        <input type="button" value="3일" onclick="javascript:CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 0); return false;"/>
+                                    </span>
+                                    <span class="btn small">
+                                        <input type="button" value="1주일" onclick="javascript:CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 1); return false;"/>
+                                    </span>
+                                    <span class="btn small">
+                                        <input type="button" value="1개월" onclick="CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 2); return false;"/>
+                                    </span>
+                                    <span class="btn small">
+                                        <input type="button" value="3개월" onclick="CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 3); return false;"/>
+                                    </span>
+                                    <span class="btn small">
+                                        <input type="button" value="6개월" onclick="CAR_ChangeDate(document.IBF['조회시작년'], document.IBF['조회시작월'], document.IBF['조회시작일'], IBF.elements['조회끝년'], IBF.elements['조회끝월'], IBF.elements['조회끝일'], 8); return false;"/>
+                                    </span>
+                                </div>
+                                <div class="selPeriod">
+                                    <span id="divSCalS-top">
+                                        <span id="div_조회시작년">
+                                            <input type="text" id="조회시작년" name="조회시작년" value="2025" class="input" style="width:30px; ime-mode:disabled;" maxlength="4"/>
+                                        </span>
+                                        <span class="tx_space">&nbsp;년</span>
+                                        <script type="text/javascript">
+                                            //<![CDATA[
+                                            caq.tag.setYearSelBoxTitle("조회시작년", '조회기간 시작', "2024", "2025", "2025", "조회시작월", "조회시작일", "14", "조회기간 시작");
+                                            //]]>
+                                        </script>
+                                        <span id="div_조회시작월">
+                                            <input type="text" id="조회시작월" name="조회시작월" value="04" class="input" style="width:15px; ime-mode:disabled;" maxlength="2"/>
+                                        </span>
+                                        <span class="tx_space">&nbsp;월</span>
+                                        <script type="text/javascript">
+                                            //<![CDATA[
+                                            caq.tag.setMonthSelBoxTitle("조회시작년", '조회기간 시작', "조회시작월", "조회시작일", "04", "14", "조회기간 시작");
+                                            //]]>
+                                        </script>
+                                        <span id="div_조회시작일">
+                                            <input type="text" id="조회시작일" name="조회시작일" value="14" class="input" style="width:15px; ime-mode:disabled;" maxlength="2"/>
+                                        </span>
+                                        <span class="tx_space">&nbsp;일</span>
+                                        <script type="text/javascript">
+                                            //<![CDATA[
+                                            caq.tag.setDateSelBoxTitle('조회시작년', '조회기간 시작', '조회시작월', '조회시작일', "14", "조회기간 시작");
+                                            //]]>
+                                        </script>
+                                        <a href="javascript:void(0);" onclick="caq.tag.toggleCalendar('KOR','divSCalS', '조회시작년','조회시작월', '조회시작일' ); return false;">
+                                            <img src="https://oimg1.kbstar.com/btn/btn_calendar.gif" id="divSCalS-btn" class="middle" alt="조회기간 시작 달력으로 선택"/>
+                                        </a>
+                                        <span id="divSCalS" class="_POPUP_LAYER layerType calendarLayer" style="display:none; top:26px; z-index:9999;"></span>
+                                    </span>
+                                    &nbsp;~ &nbsp;
+                                    <span id="divSCalE-top">
+                                        <span id="div_조회끝년">
+                                            <input type="text" id="조회끝년" name="조회끝년" value="2025" class="input" style="width:30px; ime-mode:disabled;" maxlength="4"/>
+                                        </span>
+                                        <span class="tx_space">&nbsp;년</span>
+                                        <script type="text/javascript">
+                                            //<![CDATA[
+                                            caq.tag.setYearSelBoxTitle("조회끝년", '조회기간 종료', "2024", "2025", "2025", "조회끝월", "조회끝일", "14", "조회기간 종료");
+                                            //]]>
+                                        </script>
+                                        <span id="div_조회끝월">
+                                            <input type="text" id="조회끝월" name="조회끝월" value="04" class="input" style="width:15px; ime-mode:disabled;" maxlength="2"/>
+                                        </span>
+                                        <span class="tx_space">&nbsp;월</span>
+                                        <script type="text/javascript">
+                                            //<![CDATA[
+                                            caq.tag.setMonthSelBoxTitle("조회끝년", '조회기간 종료', "조회끝월", "조회끝일", "04", "14", "조회기간 종료");
+                                            //]]>
+                                        </script>
+                                        <span id="div_조회끝일">
+                                            <input type="text" id="조회끝일" name="조회끝일" value="14" class="input" style="width:15px; ime-mode:disabled;" maxlength="2"/>
+                                        </span>
+                                        <span class="tx_space">&nbsp;일</span>
+                                        <script type="text/javascript">
+                                            //<![CDATA[
+                                            caq.tag.setDateSelBoxTitle('조회끝년', '조회기간 종료', '조회끝월', '조회끝일', "14", "조회기간 종료");
+                                            //]]>
+                                        </script>
+                                        <a href="javascript:void(0);" onclick="caq.tag.toggleCalendar('KOR','divSCalE', '조회끝년','조회끝월', '조회끝일' ); return false;">
+                                            <img src="https://oimg1.kbstar.com/btn/btn_calendar.gif" id="divSCalE-btn" class="middle" alt="조회기간 종료 달력으로 선택"/>
+                                        </a>
+                                        <span id="divSCalE" class="_POPUP_LAYER layerType calendarLayer" style="display:none; top:26px; z-index:9999;"></span>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">조회내용</th>
+                            <td>
+                                <div class="rad_input">
+                                    <input type="radio" id="srch_total" name="조회구분" value="2" checked="checked"/>
+                                    <label for="srch_total" class="lab_pad">전체</label>
+                                    <input type="radio" id="srch_deposit" name="조회구분" value="3"/>
+                                    <label for="srch_deposit" class="lab_pad">입금내용만</label>
+                                    <input type="radio" id="srch_withdraw" name="조회구분" value="4"/>
+                                    <label for="srch_withdraw" class="lab_pad">출금내용만</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">조회결과 순서</th>
+                            <td>
+                                <div class="rad_input">
+                                    <input type="radio" id="srch_recently" name="응답방법" value="2" checked="checked" onclick="SCR_radioCheck();"/>
+                                    <label for="srch_recently" class="lab_pad">최근 거래내역이 위로</label>
+                                    <input type="radio" id="srch_past" name="응답방법" value="1" onclick="SCR_radioCheck();"/>
+                                    <label for="srch_past" class="lab_pad">과거 거래내역이 위로</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="btnArea">
+                    <span class="btn large action">
+                        <input type="button" value="조회" onclick="uf_GoSubmit(); return false;"/>
+                    </span>
+                    <span class="btn large">
+                        <input type="button" value="다른계좌조회" onclick="link_reInquiry(); return false;"/>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="pop_footer">
+            <p class="close">
+                <span class="btn large">
+                    <a href="#" onclick="self.close();">닫기</a>
+                </span>
+            </p>
+        </div>
+    </form>
+    <script type="text/javascript">
+        //<![CDATA[
+        var IBF = document.IBF;
+        function uf_GoSubmit() {
+            //1. Input설정
+            step1_SetInput();
+
+            //날짜 세팅
+            getToday = "20250414";
+            if (!Car_DateCheck()) {
+                return false;
+            }
+            /*   if(new JForm()
+            .add(new JDate().range("조회시작", "조회끝", "조회시작일", "시작이전", getToday))
+            .add(new JDate().range("조회시작", "조회끝", "이전", "월", 3))
+            .add(new JDate().range("조회시작", "조회끝", "조회종료일", "끝이전", getToday))
+            .add(new JValidate(Car_DateCheck))
+            .validate())
+    {*/
+            IBF.elements['다음거래년월일키'].value = "";
+            IBF.elements['다음거래일련번호키'].value = "";
+            IBF.elements['이전다음거래년월일키'].value = "";
+            IBF.elements['이전다음거래일련번호키'].value = "";
+
+            //    document.IBF.action = "/quics?page=C025255&amp;cc=b028702:b028770";
+            //	document.IBF.action = "/quics?page=C025255&amp;cc=b028770:b028770";
+            document.IBF.action = "/quics?page=C025255&amp;cc=b028702:b028770";
+            document.IBF.method = "post";
+            CAR_doAjaxCC(document.IBF);
+            //  }
+
+            return false;
+        }
+
+        //1. Input설정
+        function step1_SetInput() {
+            IBF.elements['계좌번호'].value = "10270104496173";
+            IBF.elements['주민사업자번호'].value = "920507";
+            IBF.elements['고객식별번호'].value = "";
+            //     IBF.elements['응답방법'].value       = "2";
+            //     IBF.elements['조회구분'].value       = "2";
+            IBF.elements['조회시작일자'].value = IBF.elements['조회시작년'].value + IBF.elements['조회시작월'].value + IBF.elements['조회시작일'].value;
+            IBF.elements['조회종료일'].value = IBF.elements['조회끝년'].value + IBF.elements['조회끝월'].value + IBF.elements['조회끝일'].value;
+        }
+
+        function Car_DateCheck() {
+
+            var strToday = "20250414";
+            var strBginDt = IBF.elements['조회시작일자'].value;
+            //조회시작일
+            var strEndDt = IBF.elements['조회종료일'].value;
+            //조회종료일
+
+            var dateToday = new Date(strToday.substring(0, 4),strToday.substring(4, 6) - 1,strToday.substring(6, 8));
+            //오늘
+            var date1Mago = new Date(strToday.substring(0, 4),strToday.substring(4, 6) - 7,strToday.substring(6, 8));
+            //6개월전
+
+            var strMt = dateToday.getMonth();
+            var strDt = dateToday.getDate();
+            //오늘날짜
+            var strM = date1Mago.getMonth();
+            var strD = date1Mago.getDate();
+            //한달전날짜
+
+            //오늘날짜보다 한달전의 날짜(Date)가 작아진 경우는 (오늘이 3월"30"일이라 한달전이 3월"2"일이 된경우(2월30일)
+            //이번달 1일로 셋팅
+            if (strD < strDt && strMt - 2 == strM) {
+                date1Mago.setDate(1);
+            }
+
+            //String으로 setting
+            var str1Mago = "" + date1Mago.getFullYear() + ((date1Mago.getMonth() + 1 < 10) ? "0" : "") + (date1Mago.getMonth() + 1) + ((date1Mago.getDate() < 10) ? "0" : "") + date1Mago.getDate();
+
+            //응답방법에 따라, 최근거래일 경우 1개월 이내로 기간설정
+            //응답방법에 따라, 과거거래일 경우 1주일 이내로 기간 설정
+            //최근거래내역
+            var f = document.IBF;
+
+            //   if(IBF.응답방법.value == "2")
+            if (IBF.응답방법[0].checked || IBF.응답방법[1].checked) {
+                //    if(!(CAR_inDurationMonth(strBginDt, strEndDt, 1)))
+                //    {
+                //      alert("조회기간을 최근 1개월로 설정하십시오.");
+                //      return false;
+                //    }
+
+                //로직추가
+
+                if (f.elements['조회시작일자'].value > f.elements['조회종료일'].value) {
+                    alert("조회시작일이 조회종료일보다 큽니다.");
+                    return false;
+                }
+
+                if (f.elements['조회종료일'].value > '20250414') {
+                    alert("영업일 이후로는 조회가 불가능합니다.");
+                    return false;
+                }
+
+                //조회시작, 종료일모두 최근 6개월 이어야 조회가능
+                if (!(((strBginDt <= strToday) && (strEndDt <= strToday)) && ((strBginDt >= str1Mago) && (strEndDt >= str1Mago)))
+                ) {
+
+                    alert("조회기간을 최근 6개월이내로 설정하십시오.");
+                    return false;
+                }
+            }
+
+            //과거거래내역
+            //   }else  if(IBF.응답방법.value == "1"){
+            /*else  if(IBF.응답방법[1].checked){    
+	if(CAR_DaysBetween(strBginDt, strEndDt) > 7)
+    {
+      //CAR_DaysBetween(strBginDt, strEndDt):기간 설정이 올바르게 지정되었을 경우 조회기간의 차이 일수를 구한다
+  //    alert("과거거래내역이 위로인 경우 조회기간을 1주일 이내로 지정하십시오.");
+      //return false;
+    }
+    }*/
+
+            return true;
+        }
+
+        //8. 다른 계좌로 조회
+        function link_reInquiry() {
+            //빠른계좌 입력 화면으로 이동
+            document.IBF.action = "/quics?page=C025255&amp;cc=b028364:b028702";
+            CAR_doAjaxCC(document.IBF);
+            return false;
+        }
+
+        //응답방법-화면설정
+        function SCR_radioCheck() {
+            var f = document.IBF;
+
+            var strM = '2';
+
+            //과거거래내역
+            //if (IBF.응답방법.value=="1") {
+            //if(strM == "1")
+            if (!IBF.응답방법[0].checked) {
+                f.elements['조회시작년'].disabled = false;
+                f.elements['조회시작월'].disabled = false;
+                f.elements['조회시작일'].disabled = false;
+                f.elements['조회끝년'].disabled = false;
+                f.elements['조회끝월'].disabled = false;
+                f.elements['조회끝일'].disabled = false;
+
+                $("#divPRO1").hide();
+                $("#divPRO2").show();
+                //         if(document.all("divPRO1"))
+                //         {
+                //             divObj1  =   document.all("divPRO1");
+                //             divObj1.style.display = "none";
+                //             divObj2  =   document.all("divPRO2");
+                //             divObj2.style.display = "block";
+                //         }
+
+                //최근거래내역
+            } else {
+
+                f.elements['조회시작년'].disabled = false;
+                f.elements['조회시작월'].disabled = false;
+                f.elements['조회시작일'].disabled = false;
+                f.elements['조회끝년'].disabled = false;
+                f.elements['조회끝월'].disabled = false;
+                f.elements['조회끝일'].disabled = false;
+                $("#divPRO1").show();
+                $("#divPRO2").hide();
+                //face(char1, char2);
+            }
+        }
+
+        SCR_radioCheck();
+
+        //다음
+        //2009.11.18, JDJO: ★차계정 주석
+        /*
+function gotoNextPage(arg)
+{
+  //alert("다음, arg=["+arg+"]");
+
+    step1_SetInput();
+
+    IBF.elements['요청키'].value = arg;
+
+    var pageNum = parseInt("0");    
+    IBF.elements['s_presentNum'].value = pageNum +1;
+
+    var reqPageKey = " |";
+    IBF.elements['s_pageKeyValue'].value= reqPageKey + " |" + "";
+
+    if(pageNum == 4 && 2 == 0 )
+  {
+        alert("고객님 죄송합니다.\n입력하신 계좌는 거래내역이 많은 관계로 '과거 거래내역이 위로'를 선택하여 조회하실 수 있습니다.");
+        return;
+    }
+
+    document.IBF.action = "/quics?page=C025255&amp;cc=b028702:b028770";
+    CAR_doAjaxCC(document.IBF);
+}
+*/
+        function gotoNextPage() {
+            step1_SetInput();
+
+            //2009.11.18, JDJO: ★차계정 변경
+            var strReqKey1 = "";
+            var strReqKey2 = "";
+            var strBackKey1 = "";
+            var strBackKey2 = "";
+            var strNextYM = "";
+            var strNextSeq = "0";
+
+            IBF.elements['다음거래년월일키'].value = strNextYM;
+            IBF.elements['다음거래일련번호키'].value = strNextSeq;
+            IBF.elements['이전다음거래년월일키'].value = strBackKey1 + "|" + strReqKey1;
+            IBF.elements['이전다음거래일련번호키'].value = strBackKey2 + "|" + strReqKey2;
+
+            var pageNum = parseInt("0");
+            IBF.elements['s_presentNum'].value = pageNum + 1;
+
+            //if(pageNum == 4 && 2 == 0 )
+            //{
+            //    alert("고객님 죄송합니다.\n입력하신 계좌는 거래내역이 많은 관계로 '과거 거래내역이 위로'를 선택하여 조회하실 수 있습니다.");
+            //    return;
+            //}
+
+            document.IBF.action = "/quics?page=C025255&amp;cc=b028702:b028770";
+            CAR_doAjaxCC(document.IBF);
+            return false;
+        }
+
+        //이전
+        //2009.11.18, JDJO: ★차계정 주석
+        /*
+function gotoPrewPage(arg)
+{
+  //alert("이전, arg=["+arg+"]");
+
+    var pageNum = parseInt("0");
+
+    if(pageNum == "1")
+    {
+        IBF.elements['요청키'].value = "";
+    }else{
+        var reqPageKey     = " |";
+        var lastIndebPoint = reqPageKey.lastIndexOf("|");
+
+        IBF.s_pageKeyValue.value     = " |".substring(0, lastIndebPoint);
+        IBF.elements['요청키'].value = " |".substring(lastIndebPoint+1, reqPageKey.length);
+    }
+
+    step1_SetInput();
+
+    IBF.s_presentNum.value = pageNum -1;
+
+    document.IBF.action = "/quics?page=C025255&amp;cc=b028702:b028770";
+    CAR_doAjaxCC(document.IBF);
+}
+*/
+
+        function gotoPrewPage() {
+
+            //2009.11.18, JDJO: ★차계정 변경
+            var strReqKey1 = "";
+            var strReqKey2 = "";
+            var strBackKey1 = "";
+            var strBackKey2 = "";
+            var strNextYM = "";
+            var strNextSeq = "0";
+
+            var pageNum = parseInt('0');
+
+            if (pageNum == "1") {
+                //IBF.elements['요청키'].value = "";
+                IBF.elements['다음거래년월일키'].value = "";
+                IBF.elements['다음거래일련번호키'].value = "";
+            } else {
+                var nLastKeyPoint1 = strBackKey1.lastIndexOf("|");
+                var nLastKeyPoint2 = strBackKey2.lastIndexOf("|");
+                strReqKey1 = strBackKey1.substring(nLastKeyPoint1 + 1, strBackKey1.length);
+                strReqKey2 = strBackKey2.substring(nLastKeyPoint2 + 1, strBackKey2.length);
+                strBackKey1 = strBackKey1.substring(0, nLastKeyPoint1);
+                strBackKey2 = strBackKey2.substring(0, nLastKeyPoint2);
+                IBF.elements['다음거래년월일키'].value = strReqKey1;
+                IBF.elements['다음거래일련번호키'].value = strReqKey2;
+                IBF.elements['이전다음거래년월일키'].value = strBackKey1;
+                IBF.elements['이전다음거래일련번호키'].value = strBackKey2;
+            }
+
+            step1_SetInput();
+
+            IBF.s_presentNum.value = pageNum - 1;
+
+            document.IBF.action = "/quics?page=C025255&amp;cc=b028702:b028770";
+            CAR_doAjaxCC(document.IBF);
+        }
+
+        //파일저장
+        function linkExcel() {
+            //2009.11.18, JDJO: ★차계정 변경
+            //var pSendKey          = ""; //요청키
+            var pSendKey1 = "";
+            //요청키1
+            var pSendKey2 = "";
+            //요청키2
+            var pStrAcno = "10270104496173";
+            //계좌번호
+            var strInquryStartDd = "20250414";
+            //조회시작일
+            var strInquryEndDd = "20250414";
+            //조회종료일
+            var strMethod = "2";
+            //응답방법
+            var strInqCode = "2";
+            //조회구분  
+            var pCuniqno = "920507";
+            var pCustID = "";
+
+            var strURL = "/quics?asfilecode=524517";
+            ///bank/jsp/car/inquiry/TrnhisInqQuickProcessRes_down.jsp
+            //6~10 페이지의 내용을 파일저장할경우 사용 --> 요청키
+            //var strParam  = "요청키="+pSendKey+"&계좌번호="+pStrAcno+"&조회시작일="+strInquryStartDd+"&조회종료일="+strInquryEndDd+"&응답방법="+strMethod+"&USER_TYPE=02";
+            var strParam = "다음거래년월일키=" + pSendKey1 + "&다음거래일련번호키=" + pSendKey2 + "&계좌번호=" + pStrAcno + "&조회시작일=" + strInquryStartDd + "&조회종료일=" + strInquryEndDd + "&주민사업자번호=" + pCuniqno + "&고객식별번호=" + pCustID + "&응답방법=" + strMethod + "&조회구분=" + strInqCode + "&비밀번호=" + '2365' + "&USER_TYPE=02";
+            OpenStreamDownload("KB_거래내역빠른조회(102701-04-496173 20250414165419).xls", "524517", strParam);
+            return false;
+        }
+
+        //인쇄 추가
+        function linkPrint() {
+            var pSendKey1 = "";
+            //요청키1
+            var pSendKey2 = "";
+            //요청키2
+            var pStrAcno = "10270104496173";
+            //계좌번호
+            var strInquryStartDd = "20250414";
+            //조회시작일
+            var strInquryEndDd = "20250414";
+            //조회종료일
+            var strMethod = "2";
+            //응답방법
+            var strInqCode = "2";
+            //조회구분  
+            var pCuniqno = "920507";
+            var pCustID = "";
+            var strParam = "다음거래년월일키=" + pSendKey1 + "&다음거래일련번호키=" + pSendKey2 + "&계좌번호=" + pStrAcno + "&조회시작일=" + strInquryStartDd + "&조회종료일=" + strInquryEndDd + "&주민사업자번호=" + pCuniqno + "&고객식별번호=" + pCustID + "&응답방법=" + strMethod + "&조회구분=" + strInqCode + "&USER_TYPE=02";
+            var openUrl = "/quics?page=C018682&amp;cc=b028364:b062129&QSL=F";
+            CAR_EncryptNavigate(openUrl, strParam, "width=805,height=721");
+        }
+
+        //페이지 이동
+        function _goView(arg1) {
+            var f = document.IBF;
+
+            //[개인뱅킹]빠른조회
+            if (arg1 == 0) {
+                f.action = '/quics?page=C025255&cc=b028364:b028702';
+                //[개인뱅킹]자기앞수표조회
+            } else if (arg1 == 1) {
+                f.action = '/quics?page=C025255&cc=b028364:b028656';
+                //[개인뱅킹]예금잔액증명서발급
+            } else if (arg1 == 2) {
+                f.action = '/quics?page=C025255&cc=b028364:b028525';
+                //[개인뱅킹]지급보증서발급
+            } else if (arg1 == 3) {
+                f.action = '/quics?page=C025255&cc=b028364:b028642';
+                //[개인뱅킹]인터넷뱅킹ID조회
+            } else if (arg1 == 4) {
+                f.action = '/quics?page=C025255&cc=b028364:b028459';
+            }
+
+            //탭이동시 모든 input 값 초기화
+            $(f).find(":input").each(function() {
+                $(this).val("");
+            });
+            f.submit();
+
+            //	CAR_doAjaxCC(f);
+            //	return false;
+
+        }
+        //]]>
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(function() {
+            popupAutoResize(721, 710);
+        });
+        //]]>
+    </script>
+</div>
+<!-- b028770 -->
+<!-- b028770 END -->
+<div id="result">{"result":"view"}
+</div>
+<!-- result -->

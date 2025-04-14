@@ -1,0 +1,37 @@
+There's a form_data_template.txt file to understand the expected format  
+With this link **https://lms.chungbuk.ac.kr/login/index.php** and username: 2025278002 password: HeangP@$$12345 Analyze the network.  
+
+Identify the network and then go and click on more button at 'Announcements' section then scrape the all announcement. Take browser url as the url. **Not taking Breadcrumb of the website as the url.**  
+Different website have different request, parameters or form-data. please identify and decide yourself.  
+🔶  
+Use form_data_template.txt as format and then modify in kbstar.js
+
+
+
+enhance the prompt
+
+Perform a comprehensive network analysis using the provided credentials (username: 2025278002, password: HeangP@$12345) at https://lms.chungbuk.ac.kr/login/index.php. 
+
+Instruction:
+After successful authentication, navigate to the Announcements section and click the "more" button to access all announcements. Extract complete announcement data including titles, content, and creation dates. 
+
+Network Analysis:
+Capture the exact browser URL during this process rather than breadcrumb navigation paths. Analyze all network requests, parameters, and form-data structures to understand the site's communication patterns. 
+
+Format:
+Implement your findings by adapting the structure from business_logic_template.txt into a properly formatted business_logic_template that can handle the specific request patterns of this educational platform. Then use module_template.js as a template to put everything together and save as a new file using __WEBSITE_NAME__ as a file name.
+
+Data Extract Instruction:
+When perform data extraction don't use regex pattern, prefer to use 
+var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+var title = StrGrab(titleSection, '">', '</a>').trim(); 
+rather than 
+// var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+// var title = StrGrab(titleSection, '<a[^>]*>', '</a>').trim();
+
+Update place holder in module_template.js
+__VERSION__=0.0.1
+__WEBSITE_NAME__= LMS
+__CLASS_NAME__= 빠른조회
+__HOST_URL__= https://lms.chungbuk.ac.kr
+__JOB_NAME__= 빠른잔액조회

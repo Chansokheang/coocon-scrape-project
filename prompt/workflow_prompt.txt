@@ -1,0 +1,12 @@
+Use Anthropic Computer Use to perform a comprehensive network analysis at https://obank.kbstar.com/quics?page=C025255&cc=b028364:b028702&QSL=F using the provided credentials:
+    1 계좌번호: 10270104496173 
+    2 계좌비밀번호: 2365 
+    3 Choose an Option 사업자번호(생년월일): 920507 
+    4 Click **조회**
+Use this URL: /quics?chgCompId=b028770&baseCompId=b028702&page=C025255&cc=b028702:b028770 to send a Request to the server. 
+I will give you an image for you to capture the reqeust url, request params and form data. 
+Please follow workflow_template.txt format to only setup <ST>WORKFLOW</SP> in __WEBSITE_NAME__.js not engage with <ST>__WEBSITE_NAME__</SP>.
+
+In postData format you need to follow with static data if possible:
+this.postData += httpRequest.URLEncode("계좌번호", "UTF-8") + "=" + httpRequest.URLEncode(username, "UTF-8");
+this.postData += "&" + httpRequest.URLEncode("계좌비밀번호", "UTF-8") + "=" + httpRequest.URLEncode(password, "UTF-8");

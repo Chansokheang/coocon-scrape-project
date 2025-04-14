@@ -1,0 +1,5 @@
+Data Extract Instruction:
+Read html.txt for the html structure understanding, 
+then clean it following data_extraction_template.txt format
+Implement the data extraction into <ST>DATA EXTRACTION</SP> in __WEBSITE_NAME__.js
+Extract (총잔액, 출금가능잔액)

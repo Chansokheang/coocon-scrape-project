@@ -1,0 +1,25 @@
+# Data Extraction Workflow Prompt
+
+## Overview
+This prompt guides you through the process of extracting and cleaning data from raw HTML responses, specifically for financial websites like KB Star Bank. The workflow follows best practices for web scraping, avoiding regex patterns and using precise HTML structure targeting.
+
+## Step 1: Obtain and Analyze the Raw HTML
+
+1. **Capture the raw HTML response**:
+   - Send a POST request to the target URL (e.g., `/quics?chgCompId=b028770&baseCompId=b028702&page=C025255&cc=b028702:b028770`)
+   - Create a different file following get_kbstar_raw_html.js and get_raw_html.bat and run it to save as rawHTML.txt the complete HTML response to a file for analysis.
+
+2. **Determine extraction methods**:
+   - Take the html.txt to extract data , plan how to extract it using StrGrab or similar functions following the data_extraction_template.txt and update the __WEBSITE_NAME__.js
+   - Avoid regex patterns; instead, use exact HTML markers
+   - Example:
+     ```javascript
+     // Extract account table
+     var accountTable = StrGrab(ResultStr, '<table class="tType02 s5"', '</table>');
+     
+     // Extract balance row
+     var balanceRow = StrGrab(accountTable, '<th scope="row">총잔액</th>', '</tr>');
+     
+     // Extract balance value
+     var balance = StrGrab(balanceRow, '<td>', '</td>').trim();
+     ```

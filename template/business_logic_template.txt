@@ -1,0 +1,76 @@
+/**
+ * KB Star Bank Login Request Information
+ * 
+ * This format example of form data request is for a login form submission taking from network idenfication after submission.
+ * 
+ */
+        __Business_Logic__
+        var input = dec(aInput.Input);
+
+        var username = input.username;  // account number
+        var password = input.password; // account password
+
+        system.setStatus(IBXSTATE_LOGIN, 30);
+        // Step 1: Get the login page and capture the URL
+        system.setStatus(IBXSTATE_LOGIN, 30);
+        this.url = "/quics?page=C025255&cc=b028364:b028702&QSL=F";
+        if (!httpRequest.get(this.host + this.url)) {
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+        var ResultStr = httpRequest.result;
+        this.log("Login Page URL: [" + this.host + this.url + "]");
+        this.log("Login Page Content: [" + ResultStr.substring(0, 200) + "...]");
+
+        // Step 2: Prepare form data for login POST request
+        system.setStatus(IBXSTATE_LOGIN, 40);
+        this.postData = "";
+        this.postData += httpRequest.URLEncode("계좌번호", "UTF-8") + "=" + httpRequest.URLEncode(username, "UTF-8");
+        this.postData += "&" + httpRequest.URLEncode("계좌비밀번호", "UTF-8") + "=" + httpRequest.URLEncode(password, "UTF-8");
+        this.postData += "&" + httpRequest.URLEncode("사업자번호", "UTF-8") + "=" + httpRequest.URLEncode(birthdate, "UTF-8");
+        this.postData += "&" + httpRequest.URLEncode("조회유형", "UTF-8") + "=" + httpRequest.URLEncode("사업자번호", "UTF-8");
+
+        // Step 3: Send POST request to login
+        if (!httpRequest.post(this.host + this.url, this.postData, "application/x-www-form-urlencoded")) {
+            this.setError(E_IBX_FAILTOPOSTDATA);
+            return E_IBX_FAILTOPOSTDATA;
+        }
+
+        // Step 4: Capture the current URL after login
+        var currentUrl = this.host + this.url;
+        this.url = "/quics?page=C025255&cc=b028364:b028702&QSL=F#CP";
+        if (!httpRequest.get(this.host + this.url)) {
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+        this.log("Current URL after login: [" + currentUrl + "]");
+        
+        ResultStr = httpRequest.result;
+
+        system.setStatus(IBXSTATE_RESULT, 50);
+
+        __DATA_EXTRACTION_AND_CLEANING__
+        // Prepare the output
+        this.iSASInOut.Output = {};
+        this.iSASInOut.Output.ErrorCode = "00000000";
+        this.iSASInOut.Output.ErrorMessage = "";
+        this.iSASInOut.Output.Result = {};
+
+        // Extract application information from the result based on the html structure that received from **ResultStr**
+        this.iSASInOut.Output.Result.url = this.host + this.url;
+        this.iSASInOut.Output.Result.postData = this.postData;
+
+        // name
+        this.iSASInOut.Output.Result.name = StrGrab(StrGrab(ResultStr, ">name<", "</tr>"), "<td", "</td>"); 
+        this.iSASInOut.Output.Result.name = StrGrab(this.iSASInOut.Output.Result.예금명, ">", ""); // Remove ">" and "<"
+
+        //appNumber
+        this.iSASInOut.Output.Result.appNumber = StrGrab(StrGrab(ResultStr, ">appNumber<", "</tr>"), "<td", "</td>"); 
+        this.iSASInOut.Output.Result.appNumber = StrGrab(this.iSASInOut.Output.Result.appNumber, ">", ""); // Remove ">" and "<"
+        this.iSASInOut.Output.Result.appNumber = StrGrab(this.iSASInOut.Output.Result.appNumber, "(", ")"); // Remove "(" and ")"
+        this.iSASInOut.Output.Result.appNumber = StrTrim(this.iSASInOut.Output.Result.appNumber);
+
+        // department
+        this.iSASInOut.Output.Result.department = StrGrab(StrGrab(StrGrab(Col_Block, '>department<', '</td>'), '<td', ''), '>', '');
+        this.iSASInOut.Output.Result.department = this.iSASInOut.Output.Result.department.replace(/[\s,]/g, ""); //Remove Space New Line and , 
+        this.iSASInOut.Output.Result.department = StrTrim(this.iSASInOut.Output.Result.department);// Remove Space New Line

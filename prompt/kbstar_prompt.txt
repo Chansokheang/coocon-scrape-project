@@ -1,0 +1,89 @@
+Use Anthropic Computer Use to perform a comprehensive network analysis at https://obank.kbstar.com/quics?page=C025255&cc=b028364:b028702&QSL=F#loading. Using the provided credentials (계좌번호: 10270104496173 계좌비밀번호: 2365 and choose 사업자번호(생년월일): 920507).
+In file, update PostData, ExtractData, and some business logic with this url: /quics?chgCompId=b028770&baseCompId=b028702&page=C025255&cc=b028702:b028770 capture the request params, form-data as PostData and use it to POST to server for Data Extraction.
+
+Network Analysis:
+ Then capture the reqeust url, request params and form data via this url: /quics?chgCompId=b028770&baseCompId=b028702&page=C025255&cc=b028702:b028770. Different website have different request, parameters or form-data. please identify and decide yourself.  
+
+Instruction:
+In __WEBSITE_NAME__.file after login, use /quics?chgCompId=b028770&baseCompId=b028702&page=C025255&cc=b028702:b028770 to POST to the server to get the HTML structure to extract some information (the website URL, 예금명, 계좌번호, 통화코드, 잔액, and 출금가능액) in 빠른조회 tab.
+In postData format you need to follow:
+this.postData += httpRequest.URLEncode("계좌번호", "UTF-8") + "=" + httpRequest.URLEncode(username, "UTF-8");
+this.postData += "&" + httpRequest.URLEncode("계좌비밀번호", "UTF-8") + "=" + httpRequest.URLEncode(password, "UTF-8");
+        
+
+Data Extract Instruction:
+When perform data extraction don't use regex pattern or static value, prefer to take the html structure and clean it from to capture the value like below: 
+
+var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+var title = StrGrab(titleSection, '">', '</a>').trim(); 
+rather than 
+// var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+// var title = StrGrab(titleSection, '<a[^>]*>', '</a>').trim();
+
+Format:
+Implement your findings by adapting the structure from business_logic_template.txt into a properly formatted business_logic_template that can handle the specific request patterns of this educational platform. Then use module_template.js as a template to put everything together and save as a new file using __WEBSITE_NAME__ as a file name.
+
+Update place holder in module_template.js
+__VERSION__=0.0.1
+__WEBSITE_NAME__= kbstar3
+__CLASS_NAME__= 빠른조회
+__HOST_URL__= https://obank.kbstar.com
+__JOB_NAME__= 빠른잔액조회
+
+====================================================
+
+Use Anthropic Computer Use to perform a comprehensive network analysis at https://obank.kbstar.com/quics?page=C025255&cc=b028364:b028702&QSL=F#loading using the provided credentials (계좌번호: 10270104496173 계좌비밀번호: 2365 and choose 사업자번호(생년월일): 920507 then click **조회** )  with this url to POST to server: /quics?chgCompId=b028770&baseCompId=b028702&page=C025255&cc=b028702:b028770. And capture the request params and form-data.
+
+Instruction:
+In __WEBSITE_NAME__.file after login, capture the reqeust url, request params and form data via this url: /quics?chgCompId=b028770&baseCompId=b028702&page=C025255&cc=b028702:b028770 to POST to the server to get the HTML structure to extract some information (the website URL, 예금명, 계좌번호, 통화코드, 잔액, and 출금가능액) in 빠른조회 tab.
+In postData format you need to follow:
+this.postData += httpRequest.URLEncode("계좌번호", "UTF-8") + "=" + httpRequest.URLEncode(username, "UTF-8");
+this.postData += "&" + httpRequest.URLEncode("계좌비밀번호", "UTF-8") + "=" + httpRequest.URLEncode(password, "UTF-8");
+        
+
+Data Extract Instruction:
+When perform data extraction don't use regex pattern or static value, prefer to take the html structure and clean it from to capture the value like below: 
+
+var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+var title = StrGrab(titleSection, '">', '</a>').trim(); 
+rather than 
+// var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+// var title = StrGrab(titleSection, '<a[^>]*>', '</a>').trim();
+
+Format:
+Implement your findings by adapting the structure from business_logic_template.txt into a properly formatted business_logic_template that can handle the specific request patterns of this educational platform. Then use module_template.js as a template to put everything together and save as a new file using __WEBSITE_NAME__ as a file name.
+
+Update place holder in module_template.js
+__VERSION__=0.0.1
+__WEBSITE_NAME__= kbstar3
+__CLASS_NAME__= 빠른조회
+__HOST_URL__= https://obank.kbstar.com
+__JOB_NAME__= 빠른잔액조회
+
+
+
+===================================================
+Use Anthropic Computer Use to perform a comprehensive network analysis at https://obank.kbstar.com/quics?page=C025255&cc=b028364:b028702&QSL=F#loading using the provided credentials (계좌번호: 10270104496173 계좌비밀번호: 2365 and choose 사업자번호(생년월일): 920507 then click **조회**) with this url to POST to server: /quics?chgCompId=b028770&baseCompId=b028702&page=C025255&cc=b028702:b028770 . I will give you an image for you to capture the reqeust url, request params and form data. 
+In postData format you need to follow:
+this.postData += httpRequest.URLEncode("계좌번호", "UTF-8") + "=" + httpRequest.URLEncode(username, "UTF-8");
+this.postData += "&" + httpRequest.URLEncode("계좌비밀번호", "UTF-8") + "=" + httpRequest.URLEncode(password, "UTF-8");
+
+
+Data Extract Instruction:
+With this url to POST to server: /quics?chgCompId=b028770&baseCompId=b028702&page=C025255&cc=b028702:b028770 to take the html structure and clean it from to capture the value like below: When perform data extraction don't use regex pattern or static value
+
+var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+var title = StrGrab(titleSection, '">', '</a>').trim(); 
+rather than 
+// var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+// var title = StrGrab(titleSection, '<a[^>]*>', '</a>').trim();
+
+Format:
+Implement your findings by adapting the structure from business_logic_template.txt into a properly formatted business_logic_template that can handle the specific request patterns of this educational platform. Then use module_template.js as a template to put everything together and save as a new file using __WEBSITE_NAME__ as a file name.
+
+Update place holder in module_template.js
+__VERSION__=0.0.1
+__WEBSITE_NAME__= kbstar3
+__CLASS_NAME__= 빠른조회
+__HOST_URL__= https://obank.kbstar.com
+__JOB_NAME__= 빠른잔액조회
