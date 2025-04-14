@@ -4,9 +4,9 @@ Use Anthropic Computer Use to perform a comprehensive network analysis at https:
     3 Choose an Option 사업자번호(생년월일): 920507 
     4 Click **조회**
 Use this URL: /quics?chgCompId=b028770&baseCompId=b028702&page=C025255&cc=b028702:b028770 to send a Request to the server. 
-I will give you an image for you to capture the reqeust url, request params and form data. 
+I will give you an image to check carefully and capture  the reqeust url, request params and form data. 
 Please follow workflow_template.txt format to only setup <ST>WORKFLOW</SP> in __WEBSITE_NAME__.js not engage with <ST>__WEBSITE_NAME__</SP>.
 
-In postData format you need to follow with static date data from the image:
+In postData format you need to follow with static data from the image:
 this.postData += httpRequest.URLEncode("계좌번호", "UTF-8") + "=" + httpRequest.URLEncode(username, "UTF-8");
 this.postData += "&" + httpRequest.URLEncode("계좌비밀번호", "UTF-8") + "=" + httpRequest.URLEncode(password, "UTF-8");
