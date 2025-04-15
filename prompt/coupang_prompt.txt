@@ -1,0 +1,24 @@
+Perform a comprehensive network analysis, go to search and look for "shoes". Using iSASTypes.js to handle error exception.
+
+Network Analysis:
+Use the announcement URL to extract the data and analyze all network requests, parameters, and form-data structures to understand the site's communication patterns. **Do not use Page breadcrumb paths**. 
+
+Format:
+Implement your findings by adapting the structure from business_logic_template.txt into a properly formatted business_logic_template that can handle the specific request patterns of this educational platform. Then use module_template.js as a template to put everything together and save as a new file using __WEBSITE_NAME__ as a file name.
+
+Data Extract Instruction:
+When perform data extraction don't use regex pattern, prefer to use 
+var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+var title = StrGrab(titleSection, '">', '</a>').trim(); 
+rather than 
+// var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+// var title = StrGrab(titleSection, '<a[^>]*>', '</a>').trim();
+
+**Important:** Do not use Page breadcrumb paths for navigation. Do not generate my own HTML implementation based on assumptions. Use iSASTypes.js for Error checking, don't make up your own keyword. Please refer to the file.
+
+Update place holder in module_template.js
+__VERSION__=0.0.1
+__WEBSITE_NAME__= LMS
+__CLASS_NAME__= COUPANG
+__HOST_URL__= https://www.coupang.com
+__JOB_NAME__= COUPANG_LIST

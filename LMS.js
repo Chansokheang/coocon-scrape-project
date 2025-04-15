@@ -1,6 +1,6 @@
 /* jshint -W107 */
-var moduleVersion = '0.0.1'; // Module version number
-var BankName = 'LMS'; // Name of the educational institution
+var moduleVersion = '0.0.1'; // Expected: string - Module version number
+var BankName = 'LMS'; // Expected: string - Name of the financial institution
 console.log(BankName + " 스크립트 호출됨."); // Script called
 console.log("Version: " + moduleVersion);
 
@@ -42,10 +42,10 @@ iSASObject.prototype.setError = function(errcode) {
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-var NOTICE = function() { // Service class name for LMS
+var NOTICE = function() { // Expected: string - Service class name for financial institution
     console.log(BankName + " 빠른조회 생성자 호출"); // Quick Inquiry constructor called
     this.errorMsg = "";
-    this.host = 'https://lms.chungbuk.ac.kr'; // Base URL of the service endpoint
+    this.host = 'https://lms.chungbuk.ac.kr'; // Expected: string - Base URL of the service endpoint
     this.url = "";
     this.userAgent = "{}";
     this.param = "";
@@ -57,23 +57,16 @@ var NOTICE = function() { // Service class name for LMS
 
 NOTICE.prototype = Object.create(iSASObject.prototype);
 
-NOTICE.prototype.NOTICE_LIST = function(aInput) { // Operation to perform
+NOTICE.prototype.NOTICE_LIST = function(aInput) { // Expected: string - Name of the operation to perform
     this.log(BankName + " 빠른조회 빠른잔액조회 호출 [" + aInput + "][" + moduleVersion + "]"); // Quick Inquiry Quick Balance Inquiry Call
     try {
         // <ST>WORKFLOW</SP> 
-        // Step 1: Parse input
-        if (!aInput) {
-            this.setError(E_IBX_KEY_ACCOUNT_INFO_2_NOTENTER);
-            return E_IBX_KEY_ACCOUNT_INFO_2_NOTENTER;
-        }
+        var input = dec(aInput.Input);
 
-        // Step 2: Login and extract announcements
-        var input = dec(aInput);
+        var username = input.username;  // LMS username
+        var password = input.password;  // LMS password
 
-        var username = input.Input.username;  // LMS username
-        var password = input.Input.password;  // LMS password
-
-        // Step 3: Access the login page
+        // Step 1: Access the login page
         this.url = "/login/index.php";
         if (!httpRequest.get(this.host + this.url)) {
             this.setError(E_IBX_FAILTOGETPAGE);
@@ -83,36 +76,36 @@ NOTICE.prototype.NOTICE_LIST = function(aInput) { // Operation to perform
         this.log("Login Page URL: [" + this.host + this.url + "]");
         this.log("Login Page Content: [" + ResultStr.substring(0, 200) + "...]");
 
-        // Step 4: Prepare form data for login POST request
+        // Step 2: Prepare form data for login POST request
         this.postData = "";
         this.postData += "username=" + httpRequest.URLEncode(username, "UTF-8");
         this.postData += "&password=" + httpRequest.URLEncode(password, "UTF-8");
         this.postData += "&rememberusername=1";
 
-        // Step 5: Send POST request to login
+        // Step 3: Send POST request to login
         if (!httpRequest.post(this.host + this.url, this.postData, "application/x-www-form-urlencoded")) {
             this.setError(E_IBX_FAILTOGETPAGE);
             return E_IBX_FAILTOGETPAGE;
         }
 
-        // Step 6: Check if login was successful
+        // Step 4: Check if login was successful
         ResultStr = httpRequest.result;
         // if (ResultStr.indexOf("Log out") === -1) {
         //     this.setError(E_IBX_LOGIN_FAIL);
         //     return E_IBX_LOGIN_FAIL;
         // }
 
-        // Step 7: Navigate to the announcements page
+        // Step 5: Navigate to the announcements page
         this.url = "/mod/ubboard/view.php?id=17";
         if (!httpRequest.get(this.host + this.url)) {
             this.setError(E_IBX_FAILTOGETPAGE);
             return E_IBX_FAILTOGETPAGE;
         }
+        
         ResultStr = httpRequest.result;
         this.log("Announcements Page URL: [" + this.host + this.url + "]");
         this.log("Announcements Page Content: [" + ResultStr.substring(0, 200) + "...]");
 
-        // Step 8: Extract and process data
         // Prepare the output
         this.iSASInOut.Output = {};
         this.iSASInOut.Output.ErrorCode = "00000000";
@@ -120,66 +113,73 @@ NOTICE.prototype.NOTICE_LIST = function(aInput) { // Operation to perform
         this.iSASInOut.Output.Result = {};
         this.iSASInOut.Output.Result.Announcements = [];
 
-        // Extract table rows from the result
-        var tableContent = StrGrab(ResultStr, '<table class="table table-bordered table-coursemos table-ubboard-list">', '</table>');
+        // Extract total count and page information
+        var totalCountSection = StrGrab(ResultStr, 'Total Count :', 'Total Page');
+        var totalCount = StrGrab(totalCountSection, '<span class="text-warning">', '</span>').trim();
         
-        // Get the tbody content
-        var tbodyContent = StrGrab(tableContent, '<tbody>', '</tbody>');
+        var totalPageSection = StrGrab(ResultStr, 'Total Page :', '</div>');
+        var totalPageInfo = StrGrab(totalPageSection, '<span class="text-success">', '</span>').trim();
+        var totalPage = StrGrab(totalPageInfo, '', '/').trim();
+        var maxPage = StrGrab(totalPageInfo, '/', '').trim();
         
-        // Split by tr opening tag to get individual rows
-        var rows = tbodyContent.split('<tr class="');
+        this.iSASInOut.Output.Result.TotalCount = totalCount;
+        this.iSASInOut.Output.Result.CurrentPage = totalPage;
+        this.iSASInOut.Output.Result.MaxPage = maxPage;
+
+        // Extract announcement table
+        var tableSection = StrGrab(ResultStr, '<table class="table table-bordered table-coursemos table-ubboard-list">', '</table>');
+        var tableBody = StrGrab(tableSection, '<tbody>', '</tbody>');
         
-        // Process each row (skip the first element which is empty due to split)
+        // Split the table body into rows
+        var rows = tableBody.split('<tr class="">');
+        
+        // Skip the first empty element
         for (var i = 1; i < rows.length; i++) {
             var row = rows[i];
             
+            // Extract announcement data
             var announcement = {};
             
-            // Extract No.
-            var noSection = StrGrab(row, 'class="text-center t-number"', '</td>');
-            // Check if it's a notice (has an image) or a regular number
-            if (noSection.indexOf('<img') > -1) {
-                announcement.no = "Notice";
+            // Extract number
+            var numberSection = StrGrab(row, 'class="text-center t-number"', '</td>');
+            // Check if it's a notice (has an image) or a regular post (has a number)
+            if (numberSection.indexOf('<img') !== -1) {
+                announcement.Number = "Notice";
             } else {
-                announcement.no = StrGrab(noSection, '">', '</td>').trim();
+                announcement.Number = StrGrab(numberSection, '>', '</td>').trim();
             }
             
-            // Extract Subject/Title
+            // Extract title
             var titleSection = StrGrab(row, 'class="t-subject"', '</td>');
-            announcement.title = StrGrab(titleSection, '">', '</a>').trim();
+            announcement.Title = StrGrab(titleSection, '">', '</a>').trim();
             
-            // Extract URL
-            var urlSection = StrGrab(titleSection, '<a href="', '"');
-            announcement.url = urlSection;
+            // Extract URL if available
+            if (titleSection.indexOf('href="') !== -1) {
+                var urlPart = StrGrab(titleSection, 'href="', '"');
+                announcement.URL = this.host + urlPart;
+            }
             
-            // Extract Date Created
+            // Check if the announcement has an attachment
+            announcement.HasAttachment = (titleSection.indexOf('icon/disk') !== -1);
+            
+            // Extract date created
             var dateSection = StrGrab(row, 'class="text-center t-date"', '</td>');
-            announcement.dateCreated = StrGrab(dateSection, 'title="', '">').trim();
-            announcement.displayDate = StrGrab(dateSection, '">', '</span>').trim();
+            var fullDate = StrGrab(dateSection, 'title="', '"').trim();
+            var displayDate = StrGrab(dateSection, '">', '</span>').trim();
+            announcement.DateCreated = displayDate;
+            announcement.FullDateCreated = fullDate;
             
-            // Extract Views
+            // Extract views
             var viewsSection = StrGrab(row, 'class="text-center t-viewcount"', '</td>');
-            announcement.views = StrGrab(viewsSection, '">', '</td>').trim();
-            
-            // Check if it has attachments
-            announcement.hasAttachment = (row.indexOf('icon/disk') > -1);
+            announcement.Views = StrGrab(viewsSection, '>', '</td>').trim();
             
             // Add to announcements array
             this.iSASInOut.Output.Result.Announcements.push(announcement);
         }
         
-        // Add metadata
+        // Add URL and postData to the output
         this.iSASInOut.Output.Result.url = this.host + this.url;
-        
-        // Extract total count from the page
-        var totalCountStr = StrGrab(ResultStr, 'Total Count :', '</span>');
-        var totalCount = StrGrab(totalCountStr, '<span class="text-warning">', '').trim();
-        this.iSASInOut.Output.Result.totalCount = totalCount;
-        
-        // Extract pagination info
-        var totalPageStr = StrGrab(ResultStr, 'Total Page :', '</span>');
-        var totalPage = StrGrab(totalPageStr, '<span class="text-success">', '').trim();
-        this.iSASInOut.Output.Result.pagination = totalPage;
+        this.iSASInOut.Output.Result.postData = this.postData;
 
         // <ST>LMS</SP> 
 
