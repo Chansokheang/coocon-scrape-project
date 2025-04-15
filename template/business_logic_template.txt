@@ -10,9 +10,7 @@
         var username = input.username;  // account number
         var password = input.password; // account password
 
-        system.setStatus(IBXSTATE_LOGIN, 30);
-        // Step 1: Get the login page and capture the URL
-        system.setStatus(IBXSTATE_LOGIN, 30);
+
         this.url = "/quics?page=C025255&cc=b028364:b028702&QSL=F";
         if (!httpRequest.get(this.host + this.url)) {
             this.setError(E_IBX_FAILTOGETPAGE);
@@ -23,7 +21,6 @@
         this.log("Login Page Content: [" + ResultStr.substring(0, 200) + "...]");
 
         // Step 2: Prepare form data for login POST request
-        system.setStatus(IBXSTATE_LOGIN, 40);
         this.postData = "";
         this.postData += httpRequest.URLEncode("계좌번호", "UTF-8") + "=" + httpRequest.URLEncode(username, "UTF-8");
         this.postData += "&" + httpRequest.URLEncode("계좌비밀번호", "UTF-8") + "=" + httpRequest.URLEncode(password, "UTF-8");
@@ -32,8 +29,8 @@
 
         // Step 3: Send POST request to login
         if (!httpRequest.post(this.host + this.url, this.postData, "application/x-www-form-urlencoded")) {
-            this.setError(E_IBX_FAILTOPOSTDATA);
-            return E_IBX_FAILTOPOSTDATA;
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
         }
 
         // Step 4: Capture the current URL after login
@@ -46,8 +43,6 @@
         this.log("Current URL after login: [" + currentUrl + "]");
         
         ResultStr = httpRequest.result;
-
-        system.setStatus(IBXSTATE_RESULT, 50);
 
         __DATA_EXTRACTION_AND_CLEANING__
         // Prepare the output
@@ -73,4 +68,4 @@
         // department
         this.iSASInOut.Output.Result.department = StrGrab(StrGrab(StrGrab(Col_Block, '>department<', '</td>'), '<td', ''), '>', '');
         this.iSASInOut.Output.Result.department = this.iSASInOut.Output.Result.department.replace(/[\s,]/g, ""); //Remove Space New Line and , 
-        this.iSASInOut.Output.Result.department = StrTrim(this.iSASInOut.Output.Result.department);// Remove Space New Line
+        this.iSASInOut.Output.Result.department = StrTrim(this.iSASInOut.Output.Result.department);// Remove Space New Line            return year + '-' + month + '-' + day;

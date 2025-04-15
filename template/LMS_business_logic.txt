@@ -1,0 +1,89 @@
+/**
+ * LMS Chungbuk University Login Request Information
+ * 
+ * This format example of form data request is for a login form submission taking from network identification after submission.
+ * 
+ */
+        __Business_Logic__
+        var input = dec(aInput.Input);
+
+        var username = input.username;  // student ID
+        var password = input.password;  // password
+
+        // Step 1: Navigate to login page
+        this.url = "/login/index.php";
+        if (!httpRequest.get(this.host + this.url)) {
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+        var ResultStr = httpRequest.result;
+        this.log("Login Page URL: [" + this.host + this.url + "]");
+        this.log("Login Page Content: [" + ResultStr.substring(0, 200) + "...]");
+
+        // Step 2: Prepare form data for login POST request
+        this.postData = "";
+        this.postData += "username=" + httpRequest.URLEncode(username, "UTF-8");
+        this.postData += "&password=" + httpRequest.URLEncode(password, "UTF-8");
+        this.postData += "&rememberusername=1";
+
+        // Step 3: Send POST request to login
+        if (!httpRequest.post(this.host + this.url, this.postData, "application/x-www-form-urlencoded")) {
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+
+        // Step 4: Navigate to the announcements page
+        this.url = "/mod/ubboard/view.php?id=17";
+        if (!httpRequest.get(this.host + this.url)) {
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+        
+        ResultStr = httpRequest.result;
+        
+        // Save the raw HTML to a file
+        var fs = require('fs');
+        fs.writeFileSync('rawHTML.html', ResultStr);
+        this.log("Raw HTML saved to rawHTML.html");
+
+        __DATA_EXTRACTION_AND_CLEANING__
+        // Prepare the output
+        this.iSASInOut.Output = {};
+        this.iSASInOut.Output.ErrorCode = "00000000";
+        this.iSASInOut.Output.ErrorMessage = "";
+        this.iSASInOut.Output.Result = {};
+
+        // Extract application information from the result based on the html structure that received from **ResultStr**
+        this.iSASInOut.Output.Result.url = this.host + this.url;
+        this.iSASInOut.Output.Result.postData = this.postData;
+
+        // Extract announcements data
+        var announcements = [];
+        var rows = ResultStr.split('<tr class="r');
+        
+        for (var i = 1; i < rows.length; i++) {
+            var item = rows[i];
+            
+            // Extract title
+            var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+            var title = StrGrab(titleSection, '">', '</a>').trim();
+            
+            // Extract views
+            var viewsSection = StrGrab(item, 'class="t-hit"', '</td>');
+            var views = StrGrab(viewsSection, '>', '<').trim();
+            
+            // Extract date
+            var dateSection = StrGrab(item, 'class="t-regdate"', '</td>');
+            var date = StrGrab(dateSection, '>', '<').trim();
+            
+            if (title) {
+                announcements.push({
+                    title: title,
+                    views: views,
+                    date: date
+                });
+            }
+        }
+        
+        // Add the extracted data to the output
+        this.iSASInOut.Output.Result.announcements = announcements;

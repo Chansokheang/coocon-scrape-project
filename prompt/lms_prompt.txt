@@ -1,22 +1,93 @@
-There's a form_data_template.txt file to understand the expected format  
-With this link **https://lms.chungbuk.ac.kr/login/index.php** and username: 2025278002 password: HeangP@$$12345 Analyze the network.  
+# LMS DATA EXTRACTION PROMPT
+## Purpose
+This prompt guides the extraction of announcement data from Chungbuk National University's Learning Management System (LMS).
 
-Identify the network and then go and click on more button at 'Announcements' section then scrape the all announcement. Take browser url as the url. **Not taking Breadcrumb of the website as the url.**  
-Different website have different request, parameters or form-data. please identify and decide yourself.  
-🔶  
-Use form_data_template.txt as format and then modify in kbstar.js
+## Table of Contents
+1. [Authentication](#authentication)
+2. [Task Overview](#task-overview)
+3. [Network Analysis Instructions](#network-analysis-instructions)
+4. [HTML Structure Analysis](#html-structure-analysis)
+5. [Implementation Format](#implementation-format)
+6. [Data Extraction Guidelines](#data-extraction-guidelines)
+7. [Configuration Parameters](#configuration-parameters)
+
+## Authentication
+**Credentials:**
+- URL: https://lms.chungbuk.ac.kr/login/index.php
+- Username: 2025278002
+- Password: HeangP@$$12345
+
+## Task Overview
+After successful authentication, navigate to the Announcements section and click the "more" button to access all announcements. Extract complete announcement data including:
+- Titles
+- Views
+- Creation dates
+Target URL: https://lms.chungbuk.ac.kr/mod/ubboard/view.php?id=17
+
+Note: Use iSASTypes.js to handle error exceptions.
+
+## Network Analysis Instructions
+Analyze all network requests, parameters, and form-data structures to understand the site's communication patterns when accessing the announcement URL.
+
+**Important:** Do not use Page breadcrumb paths for navigation. Do not generate my own HTML implementation based on assumptions. Use iSASTypes.js for Error checking, don't make up your own keyword. Please refer to the file.
+
+## HTML Structure Analysis
+Use Anthropic's computer use capability to retrieve and analyze the HTML structure of the target pages clearly:
+
+1. Launch a browser session to the target URL after authentication
+2. Analyze the DOM structure from the actual website to identify key elements:
+   - Title elements
+   - View count elements
+   - Date elements
+3. Analyze the real HTML structure of the LMS website to create a more accurate implementation.
+
+This analysis will provide the foundation for creating accurate string grabbing patterns in the data extraction phase.
+
+## Implementation Format
+Implement your findings by:
+1. Adapting the structure from `business_logic_template.txt`
+2. Creating a properly formatted business logic template that handles the specific request patterns of this educational platform
+3. Using `module_template.js` as a template to integrate all components
+4. Saving the final implementation as a new file using the `__WEBSITE_NAME__` parameter as the filename
+
+## Data Extraction Guidelines
+When performing data extraction, avoid regex patterns. Instead, use string grabbing methods:
+
+**Preferred approach:**
+```javascript
+var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+var title = StrGrab(titleSection, '">', '</a>').trim();
+```
+
+**Avoid this approach:**
+```javascript
+// var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
+// var title = StrGrab(titleSection, '<a[^>]*>', '</a>').trim();
+```
+
+## Configuration Parameters
+Update the following placeholders in `module_template.js`:
+
+| Parameter | Value |
+|-----------|-------|
+| __VERSION__ | 0.0.1 |
+| __WEBSITE_NAME__ | LMS |
+| __CLASS_NAME__ | NOTICE |
+| __HOST_URL__ | https://lms.chungbuk.ac.kr |
+| __JOB_NAME__ | NOTICE_LIST |
 
 
 
-enhance the prompt
 
-Perform a comprehensive network analysis using the provided credentials (username: 2025278002, password: HeangP@$12345) at https://lms.chungbuk.ac.kr/login/index.php. 
+
+
+Perform a comprehensive network analysis using the provided credentials (username: 2025278002, password: HeangP@$$12345) at https://lms.chungbuk.ac.kr/login/index.php. 
 
 Instruction:
-After successful authentication, navigate to the Announcements section and click the "more" button to access all announcements. Extract complete announcement data including titles, content, and creation dates. 
+After successful authentication, navigate to the Announcements section and click the "more" button to access all announcements. Extract complete announcement data including titles, views, and creation dates with url: https://lms.chungbuk.ac.kr/mod/ubboard/view.php?id=17. Using iSASTypes.js to handle error exception.
 
 Network Analysis:
-Capture the exact browser URL during this process rather than breadcrumb navigation paths. Analyze all network requests, parameters, and form-data structures to understand the site's communication patterns. 
+Use the announcement URL to extract the data and analyze all network requests, parameters, and form-data structures to understand the site's communication patterns. **Do not use Page breadcrumb paths**. 
 
 Format:
 Implement your findings by adapting the structure from business_logic_template.txt into a properly formatted business_logic_template that can handle the specific request patterns of this educational platform. Then use module_template.js as a template to put everything together and save as a new file using __WEBSITE_NAME__ as a file name.
@@ -29,9 +100,11 @@ rather than
 // var titleSection = StrGrab(item, 'class="t-subject"', '</td>');
 // var title = StrGrab(titleSection, '<a[^>]*>', '</a>').trim();
 
+**Important:** Do not use Page breadcrumb paths for navigation. Do not generate my own HTML implementation based on assumptions. Use iSASTypes.js for Error checking, don't make up your own keyword. Please refer to the file.
+
 Update place holder in module_template.js
 __VERSION__=0.0.1
 __WEBSITE_NAME__= LMS
-__CLASS_NAME__= 빠른조회
+__CLASS_NAME__= NOTICE
 __HOST_URL__= https://lms.chungbuk.ac.kr
-__JOB_NAME__= 빠른잔액조회
+__JOB_NAME__= NOTICE_LIST
